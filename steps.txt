@@ -1,0 +1,17 @@
+Install laravel in a directory (installment)
+---------------------------------
+composer create-project laravel/laravel installment
+
+Create a model
+------------------
+
+php artisan make:model Admin -mcr  // will create model, controller and migration all in one command
+
+
+To Run Migration
+----------------------
+php artisan migrate
+
+Run after changing in composer.json
+----------------------------------------
+composer dump--autoload
