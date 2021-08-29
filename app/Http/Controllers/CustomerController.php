@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 //use Illuminate\Support\Facades\DB;
 
 
@@ -55,7 +56,7 @@ class CustomerController extends Controller
             $image = $request->file('image');
             $ext = $image->extension();
             $image_name = time().".$ext";
-            $image->storeAs('/public/media',$image_name);
+            $image->move(public_path('uploads'), $image_name);
             $model->image = $image_name;
         }
 
@@ -131,10 +132,16 @@ class CustomerController extends Controller
 		 $model = Customer::find($customer_id);
             
         if($request->hasfile('image')){
+
+            // Delete existing File
+            if(File::exists('public/uploads/'.$model->image)){
+                File::delete('public/uploads/'.$model->image);
+            }
+
             $image=$request->file('image');
             $ext=$image->extension();
             $image_name=time().'.'.$ext;
-            $image->storeAs('/public/media',$image_name);
+            $image->move(public_path('uploads'), $image_name);
             $model->image=$image_name;
 		}
         
@@ -161,6 +168,12 @@ class CustomerController extends Controller
     public function delete(Request $request, $id)
     {
         $model = Customer::find($id);
+
+        // Delete existing File
+        if(File::exists('public/uploads/'.$model->image)){
+            File::delete('public/uploads/'.$model->image);
+        }
+        
         $model->delete();
 
         $request->session()->flash('msg', 'Record Deleted Successful');
@@ -171,6 +184,7 @@ class CustomerController extends Controller
 	public function status(Request $request, $id, $status)
     {
         $model = Customer::find($id);
+
         $model->status = $status;
 
         $model->save();

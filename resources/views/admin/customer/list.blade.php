@@ -35,7 +35,7 @@
 		@foreach($data as $row)
 		<tr>
 		<td>{{$sno++}}</td>
-		<td><img width="100" src="{{asset('storage/media/'.$row->image)}}"></td>
+		<td>@if($row->image)<img width="100" src="{{asset('public/uploads/'.$row->image)}}">@endif</td>
 		<td>{{$row->name}}</td>
 		<td>{{$row->father_name}}</td>
 		<td>{{$row->cnic}}</td>

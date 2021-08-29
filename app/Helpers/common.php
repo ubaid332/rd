@@ -28,7 +28,7 @@ function buildTreeView($arr,$parent,$level=0,$prelevel= -1){
 		if($parent==$data['parent_id']){
 			if($level>$prelevel){
 				if($html==''){
-					$html.='<ul class="nav navbar-nav">';
+					$html.='<ul class="nav navbar-nav"><li><a href="'.url('/').'">Home</a></li>';
 				}else{
 					$html.='<ul class="dropdown-menu">';
 				}
@@ -38,7 +38,7 @@ function buildTreeView($arr,$parent,$level=0,$prelevel= -1){
 				$html.='</li>';
 			}
 			$url=url("/category/".$data['category_slug']);
-			$html.='<li><a href="'.$url.'">'.$data['category_name'].'<span class="caret"></span></a>';
+			$html.='<li><a href="'.$url.'">'.$data['category_name'].'</a>';
 			if($level>$prelevel){
 				$prelevel=$level;
 			}
@@ -50,6 +50,7 @@ function buildTreeView($arr,$parent,$level=0,$prelevel= -1){
 	if($level==$prelevel){
 		$html.='</li></ul>';
 	}
+	
 	return $html;
 }
 

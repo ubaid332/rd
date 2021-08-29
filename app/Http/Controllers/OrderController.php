@@ -110,7 +110,7 @@ class OrderController extends Controller
         $model->save();
 
         $request->session()->flash('msg', 'Record Added Successful');
-        return redirect('admin/order/all');
+        return redirect('admin/order/list');
     }
 
 
@@ -133,6 +133,7 @@ class OrderController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        
 		$result['customers'] = DB::table('customers')->where(['status'=>1])->get();
         $data = Order::where(['id'=>$id])->get();
        
@@ -174,7 +175,7 @@ class OrderController extends Controller
         $model->save();
 
         $request->session()->flash('msg', 'Record Updated Successful');
-        return redirect('admin/order/all');
+        return redirect('admin/order/list');
     }
 
 
@@ -191,7 +192,7 @@ class OrderController extends Controller
 
         $request->session()->flash('msg', 'Record Deleted Successful');
         
-        return redirect('admin/order/all');
+        return redirect('admin/order/list');
     }
 
 	 public function status(Request $request, $id, $status)
@@ -203,6 +204,6 @@ class OrderController extends Controller
 
         $request->session()->flash('msg', 'Status updated Successful');
         
-        return redirect('admin/order/all');
+        return redirect('admin/order/list');
     }
 }

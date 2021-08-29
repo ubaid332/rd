@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\home_banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class HomeBannerController extends Controller
 {
@@ -51,7 +52,7 @@ class HomeBannerController extends Controller
             $image = $request->file('image');
             $ext = $image->extension();
             $image_name = time().".$ext";
-            $image->storeAs('/public/media',$image_name);
+            $image->move(public_path('uploads'), $image_name);
             $model->image = $image_name;
         }
 		
@@ -112,10 +113,16 @@ class HomeBannerController extends Controller
 		
 			
 		if($request->hasfile('image')){
+
+            // Delete existing File
+            if(File::exists('public/uploads/'.$model->image)){
+                File::delete('public/uploads/'.$model->image);
+            }
+
             $image=$request->file('image');
             $ext=$image->extension();
             $image_name=time().'.'.$ext;
-            $image->storeAs('/public/media',$image_name);
+            $image->move(public_path('uploads'), $image_name);
             $model->image=$image_name;
 		}	
         $model->btn_txt =$request->post('btn_txt');
@@ -146,6 +153,12 @@ class HomeBannerController extends Controller
 	public function status($status,$id)
     {
         $model = home_banner::find($id);
+
+        // Delete existing File
+        if(File::exists('public/uploads/'.$model->image)){
+            File::delete('public/uploads/'.$model->image);
+        }
+
         $model->status = $status;
 
         $model->save();

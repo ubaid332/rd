@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BrandController extends Controller
 {
@@ -38,9 +39,7 @@ class BrandController extends Controller
     {
         // validate inputs
         $request->validate([
-            'title' => 'required',
-            'value' => 'required',
-            'code' => 'required|unique:brands',
+            'name' => 'required',
             ]);
 
         $model = new Brand();
@@ -49,8 +48,7 @@ class BrandController extends Controller
             $image = $request->file('image');
             $ext = $image->extension();
             $image_name = time().".$ext";
-            $image->move(public_path('brands'), $image_name);
-            //$image->storeAs('/public/media',$image_name);
+            $image->move(public_path('uploads'), $image_name);
             $model->image = $image_name;
         }
 		
@@ -75,12 +73,12 @@ class BrandController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $data = Brand::where(['id'=>$id])->get();
-        $result['brand_id'] = $data[0]->id;
-        $result['name'] = $data[0]->name;
-		$result['image'] = $data[0]->image;
+        $data = Brand::where(['id'=>$id])->first();
+        $result['brand_id'] = $data->id;
+        $result['name'] = $data->name;
+		$result['image'] = $data->image;
         $result['is_home_selected']="";
-        if($data['0']->is_home==1){
+        if($data->is_home==1){
             $result['is_home_selected']="checked";
         }
         return view('admin.brand.edit', $result);
@@ -103,11 +101,16 @@ class BrandController extends Controller
         $model = Brand::find($request->post('brand_id'));
 
         if($request->hasfile('image')){
+
+            // Delete existing File
+            if(File::exists('public/uploads/'.$model->image)){
+                File::delete('public/uploads/'.$model->image);
+            }
+
             $image = $request->file('image');
             $ext = $image->extension();
             $image_name = time().".$ext";
-            $image->move(public_path('brands'), $image_name);
-            //$image->storeAs('/public/media',$image_name);
+            $image->move(public_path('uploads'), $image_name);
             $model->image = $image_name;
         }
 
@@ -138,6 +141,12 @@ class BrandController extends Controller
     }
 	public function status($status,$id){
         $model=Brand::find($id);
+
+        // Delete existing File
+        if(File::exists('public/uploads/'.$model->image)){
+            File::delete('public/uploads/'.$model->image);
+        }
+
         $model->status=$status;
         $model->save();
 		session()->flash('msg', 'Status updated Successful');

@@ -11,7 +11,7 @@
             @foreach($home_banner as $list)     
             <li>
               <div class="seq-model">
-                <img data-seq src="{{asset('storage/media/'.$list->image)}}" />
+                <img data-seq src="{{asset('public/uploads/'.$list->image)}}" />
               </div>
               @if($list->btn_txt!='')
               <div class="seq-title">
@@ -43,7 +43,7 @@
                   @foreach($home_categories as $list)
                   <div class="aa-single-promo-right">
                     <div class="aa-promo-banner">                      
-                      <img src="{{asset('storage/media/'.$list->category_image)}}" alt="img">                      
+                      <img src="{{asset('public/uploads/'.$list->category_image)}}" alt="img">                      
                       <div class="aa-prom-content">
                         <h4><a href="{{url('category/'.$list->category_slug)}}">{{$list->category_name}}</a></h4>                        
                       </div>
@@ -93,7 +93,7 @@
                        @foreach($home_categories_product[$list->id] as $productArr)
                         <li>
                           <figure>
-                            <a class="aa-product-img" href="{{url('product/'.$productArr->slug)}}"><img src="{{asset('storage/media/'.$productArr->image)}}" alt="{{$productArr->name}}"></a>
+                            <a class="aa-product-img" href="{{url('product/'.$productArr->slug)}}"><img src="{{asset('public/uploads/'.$productArr->image)}}" alt="{{$productArr->name}}"></a>
                             <a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_add_to_cart('{{$productArr->id}}','{{$home_product_attr[$productArr->id][0]->size}}','{{$home_product_attr[$productArr->id][0]->color}}')"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
                               <h4 class="aa-product-title"><a href="{{url('product/'.$productArr->slug)}}">{{$productArr->name}}</a></h4>
@@ -157,16 +157,18 @@
                     
                     
                     @if(isset($home_featured_product[$list->id][0]))
+
                        @foreach($home_featured_product[$list->id] as $productArr)
+                      
                         <li>
                           <figure>
-                            <a class="aa-product-img" href="{{url('product/'.$productArr->slug)}}"><img src="{{asset('storage/media/'.$productArr->image)}}" alt="{{$productArr->name}}"></a>
+                            <a class="aa-product-img" href="{{url('product/'.$productArr->slug)}}"><img src="{{asset('public/uploads/'.$productArr->image)}}" alt="{{$productArr->name}}"></a>
                             <a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_add_to_cart('{{$productArr->id}}','{{$home_product_attr[$productArr->id][0]->size}}','{{$home_product_attr[$productArr->id][0]->color}}')"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                            
                             <figcaption>
                               <h4 class="aa-product-title"><a href="{{url('product/'.$productArr->slug)}}">{{$productArr->name}}</a></h4>
                               <span class="aa-product-price">Rs {{$home_featured_product_attr[$productArr->id][0]->price}}</span><span class="aa-product-price"><del>Rs {{$home_featured_product_attr[$productArr->id][0]->mrp}}</del></span>
-                              <a href="{{url("installment?product_name=$productArr->name&price=".$home_featured_product_attr[$productArr->id][0]->price)}}" class="aa-product-installment">Buy on Installment</a>
+                              
                             </figcaption>
                           </figure>                          
                         </li>  
@@ -190,7 +192,7 @@
                        @foreach($home_tranding_product[$list->id] as $productArr)
                         <li>
                           <figure>
-                            <a class="aa-product-img" href="{{url('product/'.$productArr->slug)}}"><img src="{{asset('storage/media/'.$productArr->image)}}" alt="{{$productArr->name}}"></a>
+                            <a class="aa-product-img" href="{{url('product/'.$productArr->slug)}}"><img src="{{asset('public/uploads/'.$productArr->image)}}" alt="{{$productArr->name}}"></a>
                             <a class="aa-add-card-btn" href="{{url('product/'.$productArr->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
                               <h4 class="aa-product-title"><a href="{{url('product/'.$productArr->slug)}}">{{$productArr->name}}</a></h4>
@@ -219,7 +221,7 @@
                        @foreach($home_discounted_product[$list->id] as $productArr)
                         <li>
                           <figure>
-                            <a class="aa-product-img" href="{{url('product/'.$productArr->slug)}}"><img src="{{asset('storage/media/'.$productArr->image)}}" alt="{{$productArr->name}}"></a>
+                            <a class="aa-product-img" href="{{url('product/'.$productArr->slug)}}"><img src="{{asset('public/uploads/'.$productArr->image)}}" alt="{{$productArr->name}}"></a>
                             <a class="aa-add-card-btn" href="{{url('product/'.$productArr->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
                               <h4 class="aa-product-title"><a href="{{url('product/'.$productArr->slug)}}">{{$productArr->name}}</a></h4>
@@ -291,7 +293,7 @@
           <div class="aa-client-brand-area">
             <ul class="aa-client-brand-slider">
               @foreach($home_brand as $list)
-              <li><a href="#"><img src="{{asset('storage/media/'.$list->image)}}" alt="{{$list->name}}"></a></li>
+              <li><a href="#"><img src="{{asset('public/uploads/'.$list->image)}}" alt="{{$list->name}}"></a></li>
               @endforeach
             </ul>
           </div>

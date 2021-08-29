@@ -122,6 +122,26 @@
 						   </div>
 			</div>
 			</div>
+			
+			<div class="row">
+				<div class="col-lg-6">
+					@error('image')
+		<div class="alert alert-danger" role="alert">
+			{{$message}}
+		</div>
+		@enderror	
+			<div class="form-group">
+				
+				<label for="image" class="control-label mb-1">Select Image</label>
+				<input id="image" name="image" type="file" class="form-control">
+			</div>
+				</div>
+				<div class="col-lg-6">
+					@if($image!='')
+				 <img width="100px" src="{{asset('public/uploads/'.$image)}}"/>
+			  @endif
+				</div>
+			</div>
 				<div>
 					<input type="hidden" name="customer_id" value="{{$customer_id}}">
 					<button type="submit" class="btn btn-info">Save Record</button>

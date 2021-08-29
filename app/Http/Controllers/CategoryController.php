@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\category;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
@@ -50,8 +51,7 @@ class CategoryController extends Controller
             $image=$request->file('image');
             $ext=$image->extension();
             $image_name=time().'.'.$ext;
-            $image->move(public_path('categories'), $image_name);
-            //$image->storeAs('/public/media',$image_name);
+            $image->move(public_path('uploads'), $image_name);
             $model->category_image=$image_name;
         }
 
@@ -109,11 +109,15 @@ class CategoryController extends Controller
         $model = Category::find($request->post('cat_id'));
 
         if($request->hasfile('image')){
+            // Delete existing File
+            if(File::exists('public/uploads/'.$model->category_image)){
+                File::delete('public/uploads/'.$model->category_image);
+            }
+
             $image=$request->file('image');
             $ext=$image->extension();
             $image_name=time().'.'.$ext;
-            $image->move(public_path('categories'), $image_name);
-            //$image->storeAs('/public/media',$image_name);
+            $image->move(public_path('uploads'), $image_name);
             $model->category_image=$image_name;
         }
         
@@ -142,6 +146,12 @@ class CategoryController extends Controller
     public function delete(Request $request, $id)
     {
         $model = Category::find($id);
+
+        // Delete existing File
+        if(File::exists('public/uploads/'.$model->category_image)){
+            File::delete('public/uploads/'.$model->category_image);
+        }
+
         $model->delete();
 
         $request->session()->flash('msg','Record Deleted Successfully');

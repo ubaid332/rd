@@ -25,6 +25,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Category</th>
                             <th>Slug</th>
                             <th>Image</th>
                             <th>Action</th>
@@ -35,23 +36,24 @@
                         <tr>
                             <td>{{$list->id}}</td>
                             <td>{{$list->name}}</td>
+                            <td> @if($list->c_status) <i class="fa fa-check"></i> @endif {{$list->category_name}} @if($list->is_home) <br> <small class="text-success"><span class="badge badge-success">On Home Visible</span></small> @endif</td>
                             <td>{{$list->slug}}</td>
                             <td>
                             @if($list->image!='')
-                                <img width="100px" src="{{asset('storage/media/'.$list->image)}}"/>
+                                <img width="100px" src="{{asset('public/uploads/'.$list->image)}}"/>
                                
                             @endif
                             </td>
                             <td>
-                                <a href="{{url("admin/product/edit/$list->id")}}"><button type="button" class="btn btn-sm btn-success">Edit</button></a>
+                                <a href="{{url("admin/product/edit/$list->id")}}" class="btn btn-sm btn-success">Edit</a>
 
                                 @if($list->status==1)
-                                    <a href="{{url('admin/product/status/0')}}/{{$list->id}}"><button type="button" class="btn btn-sm btn-primary">Active</button></a>
+                                    <a href="{{url('admin/product/status/0')}}/{{$list->id}}" class="btn btn-sm btn-primary">Active</a>
                                  @elseif($list->status==0)
-                                    <a href="{{url('admin/product/status/1')}}/{{$list->id}}"><button type="button" class="btn btn-sm btn-warning">Deactive</button></a>
+                                    <a href="{{url('admin/product/status/1')}}/{{$list->id}}" class="btn btn-sm btn-warning">Deactive</a>
                                 @endif
 
-                                <a href="{{url('admin/product/delete/')}}/{{$list->id}}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+                                <a href="{{url('admin/product/delete/')}}/{{$list->id}}" class="btn btn-sm btn-danger">Delete</a>
                             </td>
                         </tr>
                         @endforeach

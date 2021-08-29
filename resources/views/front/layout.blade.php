@@ -31,6 +31,33 @@
       <script>
     var PRODUCT_IMAGE="{{asset('storage/media/')}}";
     </script>
+
+    <style>
+      #aa-catg-head-banner{
+        height: 40px;
+        margin-top: 10px;
+      }
+
+      #aa-catg-head-banner .aa-catg-head-banner-area{
+        height: 75px;
+        color: #fff;
+      }
+
+      #aa-contact{
+        background: none;
+      }
+
+      #aa-promo
+      {
+        min-height:480px;
+      }
+
+      #aa-promo .aa-promo-area .aa-promo-right .aa-single-promo-right{
+        width: 33%;
+      }
+
+    </style>
+
   </head>
   <body class="productPage"> 
    <!-- wpf loader Two -->

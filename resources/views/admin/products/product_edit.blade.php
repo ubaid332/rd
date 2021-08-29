@@ -283,7 +283,7 @@ Back
                               <input id="images" name="images[]" type="file" class="form-control" aria-required="true" aria-invalid="false" >
 
                               @if($pIArr['images']!='')
-                                 <a href="{{asset('storage/media/'.$pIArr['images'])}}" target="_blank"><img width="100px" src="{{asset('storage/media/'.$pIArr['images'])}}"/></a>
+                                 <a href="{{asset('storage/media/'.$pIArr['images'])}}" target="_blank"><img width="100px" src="{{asset('public/uploads/'.$pIArr['images'])}}"/></a>
                               @endif
                            </div>
                            
@@ -372,7 +372,7 @@ Back
                                           <input id="attr_image" name="attr_image[]" value="{{$val->sku}}" type="file" class="form-control" aria-required="true" aria-invalid="false" >
                                           
                                           @if($val->attr_image!='')
-                                             <img width="100px" src="{{asset('storage/media/'.$val->attr_image)}}"/>
+                                             <img width="100px" src="{{asset('public/uploads/'.$val->attr_image)}}"/>
                                           @endif
 
                                        </div>

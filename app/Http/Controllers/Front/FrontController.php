@@ -839,4 +839,9 @@ class FrontController extends Controller
         }
         return response()->json(['status'=>$status,'msg'=>$msg]); 
     }
+
+    public function contact()
+    {
+        return view('front.contact');
+    }
 }

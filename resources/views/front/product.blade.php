@@ -33,17 +33,17 @@
                   <div class="aa-product-view-slider">                                
                     <div id="demo-1" class="simpleLens-gallery-container">
                       <div class="simpleLens-container">
-                        <div class="simpleLens-big-image-container"><a data-lens-image="{{asset('storage/media/'.$product[0]->image)}}" class="simpleLens-lens-image"><img src="{{asset('storage/media/'.$product[0]->image)}}" class="simpleLens-big-image"></a></div>
+                        <div class="simpleLens-big-image-container"><a data-lens-image="{{asset('public/uploads/'.$product[0]->image)}}" class="simpleLens-lens-image"><img src="{{asset('public/uploads/'.$product[0]->image)}}" class="simpleLens-big-image"></a></div>
                       </div>
                       <div class="simpleLens-thumbnails-container">
-                          <a data-big-image="{{asset('storage/media/'.$product[0]->image)}}" data-lens-image="{{asset('storage/media/'.$product[0]->image)}}" class="simpleLens-thumbnail-wrapper" href="#"><img src="{{asset('storage/media/'.$product[0]->image)}}" width="70px">
+                          <a data-big-image="{{asset('public/uploads/'.$product[0]->image)}}" data-lens-image="{{asset('public/uploads/'.$product[0]->image)}}" class="simpleLens-thumbnail-wrapper" href="#"><img src="{{asset('public/uploads/'.$product[0]->image)}}" width="70px">
                           </a>   
 
                           @if(isset($product_images[$product[0]->id][0]))
 
                             @foreach($product_images[$product[0]->id] as $list)
                             
-                            <a data-big-image="{{asset('storage/media/'.$list->images)}}" data-lens-image="{{asset('storage/media/'.$list->images)}}" class="simpleLens-thumbnail-wrapper" href="#"><img src="{{asset('storage/media/'.$list->images)}}" width="70px">
+                            <a data-big-image="{{asset('public/uploads/'.$list->images)}}" data-lens-image="{{asset('public/uploads/'.$list->images)}}" class="simpleLens-thumbnail-wrapper" href="#"><img src="{{asset('public/uploads/'.$list->images)}}" width="70px">
                             </a>  
                             
                             @endforeach
@@ -105,7 +105,7 @@
                       
                       @if($attr->color!='')
 
-                      <a href="javascript:void(0)" class="aa-color-{{strtolower($attr->color)}} product_color size_{{$attr->size}}"  onclick=change_product_color_image("{{asset('storage/media/'.$attr->attr_image)}}","{{$attr->color}}")></a>
+                      <a href="javascript:void(0)" class="aa-color-{{strtolower($attr->color)}} product_color size_{{$attr->size}}"  onclick=change_product_color_image("{{asset('public/uploads/'.$attr->attr_image)}}","{{$attr->color}}")></a>
                       @endif  
 
                       @endforeach  
@@ -221,7 +221,7 @@
                     @foreach($related_product as $productArr)
                     <li>
                         <figure>
-                        <a class="aa-product-img" href="{{url('product/'.$productArr->slug)}}"><img src="{{asset('storage/media/'.$productArr->image)}}" alt="{{$productArr->name}}"></a>
+                        <a class="aa-product-img" href="{{url('product/'.$productArr->slug)}}"><img src="{{asset('public/uploads/'.$productArr->image)}}" alt="{{$productArr->name}}"></a>
                         <a class="aa-add-card-btn" href="{{url('product/'.$productArr->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                         <figcaption>
                             <h4 class="aa-product-title"><a href="{{url('product/'.$productArr->slug)}}">{{$productArr->name}}</a></h4>

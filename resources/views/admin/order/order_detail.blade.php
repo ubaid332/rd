@@ -95,8 +95,8 @@
                      $totalAmt=$totalAmt+($list->price*$list->qty);
                      @endphp
                      <tr>
-                        <td>{{$list->pname}}</td>
-                        <td><img src='{{asset('storage/media/'.$list->attr_image)}}'/></td>
+                        <td>{{$list->pname}}ss</td>
+                        <td><img src='{{asset('public/uploads/'.$list->attr_image)}}'/></td>
                         <td>{{$list->size}}</td>
                         <td>{{$list->color}}</td>
                         <td>{{$list->price}}</td>

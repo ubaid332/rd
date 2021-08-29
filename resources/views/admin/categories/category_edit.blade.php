@@ -74,7 +74,7 @@
     </div>
     <div class="col-md-4">
         @if($category_image!='')
-        <a href="{{asset('storage/media/'.$category_image)}}" target="_blank"><img width="100px" src="{{asset('storage/media/'.$category_image)}}"/></a>
+        <a href="{{asset('public/uploads/'.$category_image)}}" target="_blank"><img width="100px" src="{{asset('public/uploads/'.$category_image)}}"/></a>
        
         @endif
     </div>

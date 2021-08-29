@@ -25,7 +25,7 @@
 		<th>Payment Status</th>
 		<th>Payment Type</th>
 		<th>Order Date</th>
-		{{-- <th>Action</th> --}}
+		<th>Action</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -49,7 +49,8 @@
 		<td>{{$row->payment_status}}</td>
 		<td>{{$row->payment_type}}</td>
 		<td>{{$row->added_on}}</td>
-		{{-- <td>
+		 <td>
+			{{--
 			<a href="{{url("admin/order/edit/$row->id")}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i> Edit</a>
 			
 			@if($row->status==1)
@@ -57,9 +58,9 @@
 				@else
 				<a href="{{url("admin/order/status/$row->id/1")}}" class="btn btn-danger btn-sm"><i class="far fa-eye-slash"></i> InActive</a>
 				@endif
-			
+			--}}
 			<a href="{{url("admin/order/delete/$row->id")}}" onclick="return confirm('Are you sure to delete this?')" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
-		</td> --}}
+		</td> 
 		</tr>
 			@endforeach
 		</tbody>

@@ -19,6 +19,7 @@
 	            <thead>
 	                <tr>
 	                    <th>ID</th>
+						<th>Is Home</th>
 	                    <th>Image</th>
 	                    <th>Category Name</th>
 	                    <th>Category Slug</th>
@@ -34,7 +35,23 @@
 	            	@endphp
 	                <tr>
 	                    <td>{{$sno++}}</td>
-	                    <td><img src="{{asset('categories/'.$row->category_image)}}" width="100px"></td>
+						<td>
+							@if($row->is_home==1)
+							<label class="switch switch-text switch-success switch-pill">
+							<input type="checkbox" class="switch-input" checked="true" disabled>
+							<span data-on="On" data-off="Off" class="switch-label"></span>
+							<span class="switch-handle"></span>
+						  </label>
+						  @else
+						  <label class="switch switch-text switch-danger switch-pill">
+							<input type="checkbox" class="switch-input" checked="false" disabled>
+							<span data-on="Off" data-off="On" class="switch-label"></span>
+							<span class="switch-handle"></span>
+						  </label>
+						  @endif
+						
+						</td>
+	                    <td><img src="{{asset('public/uploads/'.$row->category_image)}}" width="100px"></td>
 	                    <td>{{$row->category_name}}</td>
 	                    <td>{{$row->category_slug}}</td>
 	                    <td>@php 

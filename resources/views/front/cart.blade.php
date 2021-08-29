@@ -6,7 +6,7 @@
 <section id="aa-catg-head-banner">
    <div class="aa-catg-head-banner-area">
      <div class="container">
-      
+      <h1>Cart</h1>
      </div>
    </div>
   </section>
@@ -36,7 +36,7 @@
                     @foreach($list as $data)
                       <tr id="cart_box{{$data->attr_id}}">
                         <td><a class="remove" href="javascript:void(0)" onclick="deleteCartProduct('{{$data->pid}}','{{$data->size}}','{{$data->color}}','{{$data->attr_id}}')"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="{{url('product/'.$data->slug)}}"><img src="{{asset('storage/media/'.$data->image)}}" alt="img"></a></td>
+                        <td><a href="{{url('product/'.$data->slug)}}"><img src="{{asset('public/uploads/'.$data->image)}}" alt="img"></a></td>
                         <td><a class="aa-cart-title" href="{{url('product/'.$data->slug)}}">{{$data->name}}</a>
                         @if($data->size!='')
                         <br/>SIZE: {{$data->size}}

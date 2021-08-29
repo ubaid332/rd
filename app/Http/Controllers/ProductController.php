@@ -6,12 +6,13 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Storage;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $result['data']=Product::all();
+        $result['data']=Product::join('categories', 'categories.id', 'products.category_id')->select('products.*','categories.category_name', 'categories.status as c_status', 'categories.is_home')->orderBy('categories.category_name')->orderBy('categories.is_home','DESC')->get();
         return view('admin/products/product_list',$result);
     }
 
@@ -57,7 +58,7 @@ class ProductController extends Controller
         $result['sizes']=DB::table('sizes')->where(['status'=>1])->get();
         $result['colors']=DB::table('colors')->where(['status'=>1])->get();
         $result['brands']=DB::table('brands')->where(['status'=>1])->get();
-        $result['taxs']=DB::table('taxes')->where(['status'=>1])->get();
+        $result['taxs']=DB::table('taxs')->where(['status'=>1])->get();
         
         $result['productAttrArr']=DB::table('products_attr')->where(['products_id'=>$id])->get();
         $productImagesArr=DB::table('product_images')->where(['products_id'=>$id])->get();
@@ -94,7 +95,7 @@ class ProductController extends Controller
             $image=$request->file('image');
             $ext=$image->extension();
             $image_name=time().'.'.$ext;
-            $image->storeAs('/public/media',$image_name);
+            $image->move(public_path('uploads'), $image_name);
             $model->image=$image_name;
         }
 
@@ -151,7 +152,7 @@ class ProductController extends Controller
                 $attr_image=$request->file("attr_image.$key");
                 $ext=$attr_image->extension();
                 $image_name=$rand.'.'.$ext;
-                $request->file("attr_image.$key")->storeAs('/public/media',$image_name);
+                $request->file("attr_image.$key")->move(public_path('uploads'), $image_name);
                 $productAttrArr['attr_image']=$image_name;
             }
 
@@ -170,16 +171,19 @@ class ProductController extends Controller
 
                 if($piidArr[$key]!=''){ 
                     $arrImage=DB::table('product_images')->where(['id'=>$piidArr[$key]])->get();
-                    if(Storage::exists('/public/media/'.$arrImage[0]->images)){
-                        Storage::delete('/public/media/'.$arrImage[0]->images);
+
+                    // Delete existing File
+                    if(File::exists('public/uploads/'.$arrImage[0]->images)){
+                        File::delete('public/uploads/'.$arrImage[0]->images);
                     }
+
                 }
 
                 $rand=rand('111111111','999999999');
                 $images=$request->file("images.$key");
                 $ext=$images->extension();
                 $image_name=$rand.'.'.$ext;
-                $request->file("images.$key")->storeAs('/public/media',$image_name);
+                $request->file("images.$key")->move(public_path('uploads'), $image_name);
                 $productImageArr['images']=$image_name;
                 
                 if($piidArr[$key]!=''){
@@ -215,10 +219,16 @@ class ProductController extends Controller
         $model=Product::find($pid);
             
         if($request->hasfile('image')){
+
+            // Delete existing File
+            if(File::exists('public/uploads/'.$model->image_name)){
+                File::delete('public/uploads/'.$model->image_name);
+            }
+            
             $image=$request->file('image');
             $ext=$image->extension();
             $image_name=time().'.'.$ext;
-            $image->storeAs('/public/media',$image_name);
+            $image->move('public/uploads',$image_name);
             $model->image=$image_name;
         }
 
@@ -283,11 +293,14 @@ class ProductController extends Controller
             }
             
             if($request->hasFile("attr_image.$key")){
+
+                
+                
                 $rand=rand('111111111','999999999');
                 $attr_image=$request->file("attr_image.$key");
                 $ext=$attr_image->extension();
                 $image_name=$rand.'.'.$ext;
-                $request->file("attr_image.$key")->storeAs('/public/media',$image_name);
+                $request->file("attr_image.$key")->move(public_path('uploads'), $image_name);
                 $productAttrArr['attr_image']=$image_name;
             }
 
@@ -310,8 +323,10 @@ class ProductController extends Controller
 
                 if($piidArr[$key]!=''){ 
                     $arrImage=DB::table('product_images')->where(['id'=>$piidArr[$key]])->get();
-                    if(Storage::exists('/public/media/'.$arrImage[0]->images)){
-                        Storage::delete('/public/media/'.$arrImage[0]->images);
+
+                    // Delete existing File
+                    if(File::exists('public/uploads/'.$arrImage[0]->images)){
+                        File::delete('public/uploads/'.$arrImage[0]->images);
                     }
                 }
 
@@ -319,7 +334,7 @@ class ProductController extends Controller
                 $images=$request->file("images.$key");
                 $ext=$images->extension();
                 $image_name=$rand.'.'.$ext;
-                $request->file("images.$key")->storeAs('/public/media',$image_name);
+                $request->file("images.$key")->move(public_path('uploads'), $image_name);
                 $productImageArr['images']=$image_name;
                 
                 if($piidArr[$key]!=''){
@@ -340,6 +355,12 @@ class ProductController extends Controller
 
     public function delete(Request $request,$id){
         $model=Product::find($id);
+
+        // Delete existing File
+        if(File::exists('public/uploads/'.$model->image_name)){
+            File::delete('public/uploads/'.$model->image_name);
+        }
+
         $model->delete();
         $request->session()->flash('message','Product deleted');
         return redirect('admin/product/list');
@@ -361,9 +382,12 @@ class ProductController extends Controller
 
     public function product_images_delete(Request $request,$paid,$pid){
         $arrImage=DB::table('product_images')->where(['id'=>$paid])->get();
-        if(Storage::exists('/public/media/'.$arrImage[0]->images)){
-            Storage::delete('/public/media/'.$arrImage[0]->images);
+
+        // Delete existing File
+        if(File::exists('public/uploads/'.$arrImage[0]->images)){
+            File::delete('public/uploads/'.$arrImage[0]->images);
         }
+
         DB::table('product_images')->where(['id'=>$paid])->delete();
         return redirect('admin/product/edit/'.$pid);
     }

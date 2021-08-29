@@ -28,7 +28,7 @@
 	            	@foreach($data as $row)
 	                <tr>
 	                    <td>{{$row->id}}</td>
-	                    <td><img width="100" src="{{asset('storage/media/'.$row->image)}}"></td>
+	                    <td><img width="100" src="{{asset('public/uploads/'.$row->image)}}"></td>
 	                    <td>{{$row->btn_txt}}</td>
 	                    <td>{{$row->btn_link}}</td>
 						

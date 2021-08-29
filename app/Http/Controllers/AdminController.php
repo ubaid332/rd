@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use App\Models\category;
-use App\Models\product;
-use App\Models\customer;
-use App\Models\order;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Crypt;
@@ -35,21 +35,18 @@ class AdminController extends Controller
             'email'     =>      'required|email',
             'password'  =>      'required|alphaNum|min:3'
         ]);
-        dd($request->get('password'));
-        $user_data = array(
-            'email'     =>      $request->get('email'),
-            'password'  =>      Crypt::decrypt($request->get('password'))
-        );
-
         
+        $user_data = array(
+            'email'     =>      $request->get('email')
+        );        
 
         $result = Admin::where($user_data)->first();
        
-        if($result)
+        if(Hash::check($request->get('password'), $result->password))
         {
             
             $request->session()->put('ADMIN_LOGIN',true);
-            $request->session()->put('ADMIN_ID',$result[0]->id);
+            $request->session()->put('ADMIN_ID',$result->id);
             return redirect('admin/dashboard');
               
         }

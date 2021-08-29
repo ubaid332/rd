@@ -30,7 +30,7 @@
 	                <tr>
 	                    <td>{{$row->id}}</td>
 	                    
-						<td><img width="100" src="{{asset('brands/'.$row->image)}}"></td>
+						<td><img width="100" src="{{asset('public/uploads/'.$row->image)}}"></td>
 						<td>{{$row->name}}</td>
 	                    <td>@php
 	                    	if($row->is_home==1)

@@ -21,7 +21,7 @@
 		@enderror	
 			<div class="form-group">
 				@if($image!='')
-				 <img width="100px" src="{{asset('storage/media/'.$image)}}"/>
+				 <img width="100px" src="{{asset('public/uploads/'.$image)}}"/>
 			  @endif
 				<label for="image" class="control-label mb-1">Select Image</label>
 				<input id="image" name="image" type="file" class="form-control">

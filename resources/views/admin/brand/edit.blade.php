@@ -17,7 +17,7 @@
     <form action="{{route('brand.update')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="name" class="control-label mb-1">Name</label>
+            <label for="name" class="control-label mb-1">Brand Name</label>
             <input id="name" value="{{$name}}" name="name" type="text" class="form-control">
         </div>
         @error('name')
@@ -33,7 +33,7 @@
 		@enderror	
 			<div class="form-group">
 				@if($image!='')
-				 <img width="100px" src="{{asset('brands/'.$image)}}"/>
+				 <img width="100px" src="{{asset('public/uploads/'.$image)}}"/>
 			  @endif
 				<label for="image" class="control-label mb-1">Select Image</label>
 				<input id="image" name="image" type="file" class="form-control">
