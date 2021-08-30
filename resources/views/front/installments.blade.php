@@ -6,7 +6,7 @@
 <section id="aa-catg-head-banner">
    <div class="aa-catg-head-banner-area">
      <div class="container">
-      
+        <h1>Installment</h1>
      </div>
    </div>
   </section>
@@ -16,7 +16,7 @@
    <div class="container">
      <div class="row">
        <div class="col-md-12">
-         <h1>Installment</h1>
+        
        </div>
 
      </div>

@@ -95,16 +95,16 @@ Route::group(['middleware'=>'admin_auth'], function(){
 	Route::get('admin/category/create', [CategoryController::class,'create']);
 	Route::get('admin/category/delete/{id}', [CategoryController::class,'delete']);
 	Route::get('admin/category/edit/{id}', [CategoryController::class,'edit']);
-	Route::post('category/save', [CategoryController::class,'save'])->name('category.save');
-	Route::post('category/update', [CategoryController::class,'update'])->name('category.update');
+	Route::post('admin/category/save', [CategoryController::class,'save'])->name('category.save');
+	Route::post('admin/category/update', [CategoryController::class,'update'])->name('category.update');
 	Route::get('admin/category/status/{status}/{id}',[CategoryController::class,'status']);
 
 	Route::get('admin/product/list', [ProductController::class,'index']);
 	Route::get('admin/product/create', [ProductController::class,'create']);
 	Route::get('admin/product/delete/{id}', [ProductController::class,'delete']);
 	Route::get('admin/product/edit/{id}', [ProductController::class,'edit']);
-	Route::post('product/save', [ProductController::class,'save'])->name('product.save');
-	Route::post('product/update', [ProductController::class,'update'])->name('product.update');
+	Route::post('admin/product/save', [ProductController::class,'save'])->name('product.save');
+	Route::post('admin/product/update', [ProductController::class,'update'])->name('product.update');
 	Route::get('admin/product/status/{status}/{id}',[ProductController::class,'status']);
 	Route::get('admin/product/product_attr_delete/{paid}/{pid}',[ProductController::class,'product_attr_delete']);
 	Route::get('admin/product/product_images_delete/{paid}/{pid}',[ProductController::class,'product_images_delete']);
@@ -113,8 +113,8 @@ Route::group(['middleware'=>'admin_auth'], function(){
 	Route::get('admin/coupon/create', [CouponController::class,'create']);
 	Route::get('admin/coupon/delete/{id}', [CouponController::class,'delete']);
 	Route::get('admin/coupon/edit/{id}', [CouponController::class,'edit']);
-	Route::post('coupon/save', [CouponController::class,'save'])->name('coupon.save');
-	Route::post('coupon/update', [CouponController::class,'update'])->name('coupon.update');
+	Route::post('admin/coupon/save', [CouponController::class,'save'])->name('coupon.save');
+	Route::post('admin/coupon/update', [CouponController::class,'update'])->name('coupon.update');
 	Route::get('admin/coupon/status/{status}/{id}',[CouponController::class,'status']);
 
 	Route::get('admin/size/list',[SizeController::class,'index']);
@@ -147,7 +147,7 @@ Route::group(['middleware'=>'admin_auth'], function(){
 	Route::get('admin/customer/edit/{id}', [CustomerController::class, 'edit']);
 	Route::get('admin/customer/status/{id}/{status}', [CustomerController::class, 'status']);
 	Route::post('admin/customer/save', [CustomerController::class, 'save'])->name('customer.save');
-	Route::post('customer/update', [CustomerController::class, 'update'])->name('customer.update');
+	Route::post('admin/customer/update', [CustomerController::class, 'update'])->name('customer.update');
 
 	Route::get('admin/brand/list', [BrandController::class, 'index']);
 	Route::get('admin/brand/create', [BrandController::class, 'create']);
@@ -155,7 +155,7 @@ Route::group(['middleware'=>'admin_auth'], function(){
 	Route::get('admin/brand/edit/{id}', [BrandController::class, 'edit']);
 	Route::get('admin/brand/status/{id}/{status}', [BrandController::class, 'status']);
 	Route::post('admin/brand/save', [BrandController::class, 'save'])->name('brand.save');
-	Route::post('brand/update', [BrandController::class, 'update'])->name('brand.update');
+	Route::post('admin/brand/update', [BrandController::class, 'update'])->name('brand.update');
 
 	Route::get('admin/order/list', [OrderController::class, 'index']);
 	Route::get('admin/order/create', [OrderController::class, 'create']);
@@ -163,7 +163,7 @@ Route::group(['middleware'=>'admin_auth'], function(){
 	Route::get('admin/order/edit/{id}', [OrderController::class, 'edit']);
 	Route::get('admin/order/status/{id}/{status}', [OrderController::class, 'status']);
 	Route::post('admin/order/save', [OrderController::class, 'save'])->name('order.save');
-	Route::post('order/update', [OrderController::class, 'update'])->name('order.update');
+	Route::post('admin/order/update', [OrderController::class, 'update'])->name('order.update');
 	Route::get('admin/order_detail/{id}',[OrderController::class,'order_detail']);
 	Route::post('admin/order_detail/{id}',[OrderController::class,'update_track_detail']);
     Route::get('admin/update_payemnt_status/{status}/{id}',[OrderController::class,'update_payemnt_status']);
@@ -178,7 +178,7 @@ Route::group(['middleware'=>'admin_auth'], function(){
 	Route::get('admin/purchase/edit/{id}', [PurchaseController::class, 'edit']);
 	Route::get('admin/purchase/status/{id}/{status}', [PurchaseController::class, 'status']);
 	Route::post('admin/purchase/save', [PurchaseController::class, 'save'])->name('purchase.save');
-	Route::post('purchase/update', [PurchaseController::class, 'update'])->name('purchase.update');
+	Route::post('admin/purchase/update', [PurchaseController::class, 'update'])->name('purchase.update');
 
 	Route::get('admin/home_banner/list', [HomeBannerController::class,'index']);
 	Route::get('admin/home_banner/create', [HomeBannerController::class,'create']);

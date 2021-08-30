@@ -245,23 +245,23 @@ jQuery(function($){
        var filter_price_end=jQuery('#filter_price_end').val();
        
        if(filter_price_start=='' || filter_price_end==''){
-        var filter_price_start=100;
-        var filter_price_end=1700;
+        var filter_price_start=500;
+        var filter_price_end=500000;
        }
 
         noUiSlider.create(skipSlider, {
             range: {
-                'min': 0,
-                '10%': 100,
-                '20%': 300,
-                '30%': 500,
-                '40%': 700,
-                '50%': 900,
-                '60%': 1100,
-                '70%': 1300,
-                '80%': 1500,
-                '90%': 1700,
-                'max': 1900
+                'min': 500,
+                '10%': 1000,
+                '20%': 5000,
+                '30%': 15000,
+                '40%': 30000,
+                '50%': 40000,
+                '60%': 60000,
+                '70%': 80000,
+                '80%': 90000,
+                '90%': 100000,
+                'max': 500000
             },
             snap: true,
             connect: true,

@@ -47,7 +47,7 @@
 
         <div class="form-group">
             <label for="category_slug" class="control-label mb-1">Category Slug</label>
-            <input id="category_slug" value="{{$category_slug}}" name="category_slug" type="text" class="form-control">
+            <input id="category_slug" value="{{ old('category_name',$category_slug) }}" name="category_slug" type="text" class="form-control">
         </div>
        @error('category_slug')
         <div class="alert alert-danger">

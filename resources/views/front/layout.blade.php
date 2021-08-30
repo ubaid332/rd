@@ -34,7 +34,7 @@
 
     <style>
       #aa-catg-head-banner{
-        height: 40px;
+        height: 100px;
         margin-top: 10px;
       }
 
@@ -54,6 +54,10 @@
 
       #aa-promo .aa-promo-area .aa-promo-right .aa-single-promo-right{
         width: 33%;
+      }
+
+      #cart-view{
+        margin-top: 30px;
       }
 
     </style>
@@ -100,7 +104,7 @@
                     <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                   @endif
                   
-
+                  <li><a href="{{url('/contact')}}">Contact</a></li>
                 </ul>
               </div>
             </div>
@@ -174,7 +178,7 @@
               <!-- search box -->
               <div class="aa-search-box">
                 <form action="">
-                  <input type="text" id="search_str" placeholder="Search here ex. 'man' ">
+                  <input type="text" id="search_str" placeholder="Search here ex. 'Enviro' ">
                   <button type="button" onclick="funSearch()"><span class="fa fa-search"></span></button>
                 </form>
               </div>
@@ -294,13 +298,8 @@
         <div class="row">
         <div class="col-md-12">
           <div class="aa-footer-bottom-area">
-            <p>Developed by <a href="#">Sajjad & Shah Faisal</a></p>
-            <div class="aa-footer-payment">
-              <span class="fa fa-cc-mastercard"></span>
-              <span class="fa fa-cc-visa"></span>
-              <span class="fa fa-paypal"></span>
-              <span class="fa fa-cc-discover"></span>
-            </div>
+            <p>Developed by <a href="#">Sajid Khan & Shah Faisal</a></p>
+           
           </div>
         </div>
       </div>

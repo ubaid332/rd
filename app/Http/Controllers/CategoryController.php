@@ -41,8 +41,9 @@ class CategoryController extends Controller
     {
         // validate inputs
         $request->validate([
-            'category_name' => 'required',
+            'category_name' => 'required|max:20|alpha_spaces',
             'category_slug' => 'required|unique:categories',
+            'image' => 'required',
             ]);
 
         $model = new Category();

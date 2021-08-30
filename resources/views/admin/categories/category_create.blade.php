@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <label for="category_name" class="control-label mb-1">Category Name</label>
-            <input id="category_name" name="category_name" type="text" class="form-control">
+            <input id="category_name" name="category_name" type="text" value="{{ old('category_name') }}" class="form-control">
         </div>
         @error('category_name')
         <div class="alert alert-danger">
@@ -44,7 +44,7 @@
 
             <div class="form-group">
             <label for="category_slug" class="control-label mb-1">Category Slug</label>
-            <input id="category_slug" name="category_slug" type="text" class="form-control">
+            <input id="category_slug" name="category_slug" value="{{ old('category_slug') }}" type="text" class="form-control">
         </div>
        @error('category_slug')
         <div class="alert alert-danger">

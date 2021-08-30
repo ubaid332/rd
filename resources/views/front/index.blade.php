@@ -293,7 +293,7 @@
           <div class="aa-client-brand-area">
             <ul class="aa-client-brand-slider">
               @foreach($home_brand as $list)
-              <li><a href="#"><img src="{{asset('public/uploads/'.$list->image)}}" alt="{{$list->name}}"></a></li>
+              <li><a href="javascript:void(0)"><img src="{{asset('public/uploads/'.$list->image)}}" alt="{{$list->name}}"></a></li>
               @endforeach
             </ul>
           </div>
