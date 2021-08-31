@@ -46,7 +46,7 @@ class ProductController extends Controller
             $result['warranty']=$arr['0']->warranty;
             $result['lead_time']=$arr['0']->lead_time;
             $result['tax_id']=$arr['0']->tax_id;
-            $result['is_promo']=$arr['0']->is_promo;
+            //$result['is_promo']=$arr['0']->is_promo;
             $result['is_featured']=$arr['0']->is_featured;
             $result['is_discounted']=$arr['0']->is_discounted;
             $result['is_tranding']=$arr['0']->is_tranding;
@@ -74,17 +74,17 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
-        //return $request->post();
-        // echo "<pre>";
-        // print_r($request->post());
-        // die();
         
         $image_validation="required|mimes:jpeg,jpg,png";
         
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|max:20|alpha_spaces',
             'image'=>$image_validation,
             'slug'=>'required|unique:products,slug,'.$request->post('id'),   
+            'short_desc'=>'required',
+            'desc'=>'required',
+            'technical_specification'=>'required',
+            'lead_time'=>'required',
         ]);
 
             $model=new Product();
@@ -112,7 +112,7 @@ class ProductController extends Controller
         $model->warranty=$request->post('warranty');
         $model->lead_time=$request->post('lead_time');
         $model->tax_id=$request->post('tax_id');
-        $model->is_promo=$request->post('is_promo');
+        //$model->is_promo=$request->post('is_promo');
         $model->is_featured=$request->post('is_featured');
         $model->is_discounted=$request->post('is_discounted');
         $model->is_tranding=$request->post('is_tranding');
@@ -207,13 +207,15 @@ class ProductController extends Controller
         //return $request->post();
 
         $pid = $request->post('id');
-        
+        $image_validation="mimes:jpeg,jpg,png";
         $request->validate([
-            'name'=>'required',
-            'image'=>'mimes:jpeg,jpg,png',
-            'slug'=>'required|unique:products,slug,'.$request->post('id'),
-            'attr_image.*' =>'mimes:jpg,jpeg,png',
-            'images.*' =>'mimes:jpg,jpeg,png' 
+            'name'=>'required|max:20|alpha_spaces',
+            'image'=>$image_validation,
+            'slug'=>'required|unique:products,slug,'.$request->post('id'),   
+            'short_desc'=>'required',
+            'desc'=>'required',
+            'technical_specification'=>'required',
+            'lead_time'=>'required|integer',
         ]);
 
         $model=Product::find($pid);
@@ -245,7 +247,7 @@ class ProductController extends Controller
         $model->warranty=$request->post('warranty');
         $model->lead_time=$request->post('lead_time');
         $model->tax_id=$request->post('tax_id');
-        $model->is_promo=$request->post('is_promo');
+        //$model->is_promo=$request->post('is_promo');
         $model->is_featured=$request->post('is_featured');
         $model->is_discounted=$request->post('is_discounted');
         $model->is_tranding=$request->post('is_tranding');

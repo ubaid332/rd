@@ -38,9 +38,12 @@ class CouponController extends Controller
     {
         // validate inputs
         $request->validate([
-            'title' => 'required',
-            'value' => 'required',
+            'title' => 'required|max:20|alpha_spaces',
+            'value' => 'required|numeric',
             'code' => 'required|unique:coupons',
+            'type' => 'required',
+            'min_order_amt' => 'required|integer',
+            'is_one_time' => 'required',
             ]);
 
         $model = new Coupon();
@@ -91,6 +94,9 @@ class CouponController extends Controller
             'title' => 'required',
             'value' => 'required',
             'code' => 'required|unique:coupons,code,'.$request->post('coupon_id'),
+            'type' => 'required',
+            'min_order_amt' => 'required|integer',
+            'is_one_time' => 'required',
             ]);
 
         $model = Coupon::find($request->post('coupon_id'));

@@ -54,7 +54,7 @@ class SizeController extends Controller
         //return $request->post();
         
         $request->validate([
-            'size'=>'required|unique:sizes,size,'.$request->post('id'),   
+            'size'=>'required|alpha|unique:sizes,size,'.$request->post('id'),   
         ]);
         
         $model=Size::find($request->post('id'));

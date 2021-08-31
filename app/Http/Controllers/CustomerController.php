@@ -42,12 +42,15 @@ class CustomerController extends Controller
         public function save(Request $request)
     {
        $request->validate([
-			'name' => 'required',
-			'father_name' => 'required',
-			'cnic' => 'required|unique:customers',
-			'address' => 'required',
-		    'mobile' => 'required',
-		    'email' => 'required'
+			'name' => 'required|max:20|alpha_spaces',
+			'father_name' => 'required|max:20|alpha_spaces',
+			'cnic' => 'required|integer|min:14|max:14|unique:customers',
+			'address' => 'required|max:50',
+		    'mobile' => 'required|integer|min:11|max:11',
+		    'email' => 'required|email',
+            'image' => 'required',
+            'city' => 'required|alpha_spaces',
+            'state' => 'required|alpha_spaces',
 		   
 		]);
 			$model = new customer;
@@ -121,12 +124,15 @@ class CustomerController extends Controller
 		$customer_id = $request->post('customer_id');
 		
         $request->validate([
-            'name' => 'required',
-            'father_name' => 'required',
-            'cnic' => 'required|unique:customers',
-            'address' => 'required',
-            'mobile' => 'required',
-            'email' => 'required'
+            'name' => 'required|max:20|alpha_spaces',
+            'father_name' => 'required|max:20|alpha_spaces',
+            'cnic' => 'required|integer|min:14|max:14|unique:customers',
+            'address' => 'required|max:50',
+            'mobile' => 'required|integer|max:11',
+            'email' => 'required|email',
+            'image' => 'required',
+            'city' => 'required|alpha_spaces',
+            'state' => 'required|alpha_spaces',
 			
         ]);
 		 $model = Customer::find($customer_id);

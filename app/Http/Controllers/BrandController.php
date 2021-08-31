@@ -39,7 +39,8 @@ class BrandController extends Controller
     {
         // validate inputs
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:20|alpha_spaces',
+             'image' => 'required',
             ]);
 
         $model = new Brand();
@@ -95,7 +96,8 @@ class BrandController extends Controller
     {
         // validate inputs
         $request->validate([
-            'name' => 'required'
+            'name' => 'required|max:20|alpha_spaces',
+             'image' => 'required',
             ]);
 
         $model = Brand::find($request->post('brand_id'));

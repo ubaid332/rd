@@ -42,7 +42,7 @@ class ColorController extends Controller
         //return $request->post();
         
         $request->validate([
-            'color'=>'required|unique:colors,color,'.$request->post('id'),   
+            'color'=>'required|alpha_spaces|unique:colors,color,'.$request->post('id'),   
         ]);
 
         
@@ -61,7 +61,7 @@ class ColorController extends Controller
         //return $request->post();
         
         $request->validate([
-            'color'=>'required|unique:colors,color,'.$request->post('id'),   
+            'color'=>'required|alpha_spaces|unique:colors,color,'.$request->post('id'),   
         ]);
 
         

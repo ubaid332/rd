@@ -38,8 +38,8 @@ class TaxController extends Controller
     {
          // validate inputs
         $request->validate([
-            'tax_desc' => 'required',
-            'tax_value' => 'required',
+            'tax_desc' => 'required|max:20',
+            'tax_value' => 'required|numeric',
             ]);
 
         $model = new Tax();
@@ -89,8 +89,8 @@ class TaxController extends Controller
     {
         // validate inputs
         $request->validate([
-            'tax_desc' => 'required',
-            'tax_value' => 'required',
+            'tax_desc' => 'required|max:20',
+            'tax_value' => 'required|numeric',
             ]);
 
         $model = Tax::find($request->post('id'));

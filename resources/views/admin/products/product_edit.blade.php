@@ -48,7 +48,7 @@ Back
                      <div class="col-md-6">
                      <div class="form-group">
                         <label for="name" class="control-label mb-1"> Name</label>
-                        <input id="name" value="{{$name}}" name="name" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        <input id="name" value="{{ old('name', $name) }}" name="name" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
                         @error('name')
                         <div class="alert alert-danger" role="alert">
                            {{$message}}     
@@ -60,7 +60,7 @@ Back
                      <div class="col-md-6">
                      <div class="form-group">
                         <label for="slug" class="control-label mb-1"> Slug</label>
-                        <input id="slug" value="{{$slug}}" name="slug" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        <input id="slug" value="{{ old('slug', $slug) }}" name="slug" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
                         @error('slug')
                         <div class="alert alert-danger" role="alert">
                            {{$message}}     
@@ -74,7 +74,7 @@ Back
                      <div class="col-md-6">
                      <div class="form-group">
                         <label for="image" class="control-label mb-1"> Image</label>
-                        <input id="image" name="image" type="file" class="form-control" aria-required="true" aria-invalid="false" {{$image_required}}>
+                        <input id="image" name="image" type="file"  class="form-control" aria-required="true" aria-invalid="false" {{$image_required}}>
                         @error('image')
                         <div class="alert alert-danger" role="alert">
                            {{$message}}     
@@ -106,7 +106,7 @@ Back
                      <div class="col-md-6">
                      <div class="form-group">
                         <label for="brand" class="control-label mb-1"> Brand</label>
-                              <select id="brand" name="brand" class="form-control" required>
+                              <select id="brand" name="brand" value="{{ old('brand', $brand) }}" class="form-control" required>
                                  <option value="">Select Brand</option>
                                  @foreach($brands as $list)
                                  @if($brand==$list->id)
@@ -118,13 +118,23 @@ Back
                                  </option>
                                  @endforeach
                               </select>
+                               @error('brand')
+                        <div class="alert alert-danger" role="alert">
+                           {{$message}}     
+                        </div>
+                        @enderror
                      </div>
                      </div>
 
                      <div class="col-md-6">
                      <div class="form-group">
                         <label for="model" class="control-label mb-1"> Model</label>
-                        <input id="model" value="{{$model}}" name="model" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        <input id="model" value="{{ old('model', $model) }}" name="model" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                         @error('model')
+                        <div class="alert alert-danger" role="alert">
+                           {{$message}}     
+                        </div>
+                        @enderror
                      </div>
                      </div>
                      </div>
@@ -133,7 +143,12 @@ Back
                      <div class="col-md-12">
                      <div class="form-group">
                         <label for="short_desc" class="control-label mb-1"> Short Desc</label>
-                        <textarea id="short_desc" name="short_desc" type="text" class="form-control" aria-required="true" aria-invalid="false" required>{{$short_desc}}</textarea>
+                        <textarea id="short_desc" name="short_desc" type="text" value="{{ old('short_desc', $short_desc) }}" class="form-control" aria-required="true" aria-invalid="false" required>{{$short_desc}}</textarea>
+                        @error('short_desc')
+                        <div class="alert alert-danger" role="alert">
+                           {{$message}}     
+                        </div>
+                        @enderror
                      </div>
                      </div>
                   </div>
@@ -142,7 +157,12 @@ Back
                      <div class="col-md-12">
                      <div class="form-group">
                         <label for="desc" class="control-label mb-1"> Desc</label>
-                        <textarea id="desc" name="desc" type="text" class="form-control" aria-required="true" aria-invalid="false" required>{{$desc}}</textarea>
+                        <textarea id="desc" name="desc" type="text" value="{{ old('desc', $desc) }}" class="form-control" aria-required="true" aria-invalid="false" required>{{$desc}}</textarea>
+                         @error('descdesc')
+                        <div class="alert alert-danger" role="alert">
+                           {{$message}}     
+                        </div>
+                        @enderror
                      </div>
                      </div>
                      </div>
@@ -151,7 +171,13 @@ Back
                         <div class="col-md-12">
                      <div class="form-group">
                         <label for="technical_specification" class="control-label mb-1"> Technical Specification</label>
-                        <textarea id="technical_specification" name="technical_specification" type="text" class="form-control" aria-required="true" aria-invalid="false" required>{{$technical_specification}}</textarea>
+                        <textarea id="technical_specification" name="technical_specification" type="text" value="{{ old('technical_specification', $technical_specification) }}" class="form-control" aria-required="true" aria-invalid="false" required>{{$technical_specification}}</textarea>
+
+                         @error('technical_specification')
+                        <div class="alert alert-danger" role="alert">
+                           {{$message}}     
+                        </div>
+                        @enderror
                      </div>
                      </div>
                      </div>
@@ -160,21 +186,36 @@ Back
                      <div class="col-md-4">
                      <div class="form-group">
                         <label for="keywords" class="control-label mb-1"> Keywords</label>
-                        <textarea id="keywords" name="keywords" type="text" class="form-control" aria-required="true" aria-invalid="false" required>{{$keywords}}</textarea>
+                        <textarea id="keywords" name="keywords" type="text" value="{{ old('keywords') }}" class="form-control" aria-required="true" aria-invalid="false" required>{{$keywords}}</textarea>
+                        @error('keywords')
+                        <div class="alert alert-danger" role="alert">
+                           {{$message}}     
+                        </div>
+                        @enderror
                      </div>
                      </div>
 
                      <div class="col-md-4">
                      <div class="form-group">
                         <label for="uses" class="control-label mb-1"> Uses</label>
-                        <textarea id="uses" name="uses" type="text" class="form-control" aria-required="true" aria-invalid="false" required>{{$uses}}</textarea>
+                        <textarea id="uses" name="uses" type="text" value="{{ old('uses', $uses) }}" class="form-control" aria-required="true" aria-invalid="false" required>{{$uses}}</textarea>
+                        @error('uses')
+                        <div class="alert alert-danger" role="alert">
+                           {{$message}}     
+                        </div>
+                        @enderror
                      </div>
                      </div>
 
                      <div class="col-md-4">
                      <div class="form-group">
                         <label for="warranty" class="control-label mb-1"> Warranty</label>
-                        <textarea id="warranty" name="warranty" type="text" class="form-control" aria-required="true" aria-invalid="false" required>{{$warranty}}</textarea>
+                        <textarea id="warranty" name="warranty" type="text" value="{{ old('warranty', $warranty) }}" class="form-control" aria-required="true" aria-invalid="false" required>{{$warranty}}</textarea>
+                        @error('warranty')
+                        <div class="alert alert-danger" role="alert">
+                           {{$message}}     
+                        </div>
+                        @enderror
                      </div>
                      </div>
                      </div>
@@ -182,7 +223,12 @@ Back
                      <div class="row">
                            <div class="col-md-8">
                               <label for="model" class="control-label mb-1"> Lead Time</label>
-                              <input id="lead_time" value="{{$lead_time}}" name="lead_time" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                              <input id="lead_time" value="{{ old('lead_time', $lead_time) }}" name="lead_time" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                              @error('lead_time')
+                        <div class="alert alert-danger" role="alert">
+                           {{$message}}     
+                        </div>
+                        @enderror
                            </div>
                            <div class="col-md-4">
                               <label for="model" class="control-label mb-1"> Tax</label>
@@ -198,12 +244,17 @@ Back
                                  </option>
                                  @endforeach
                               </select>
+                               @error('tax_id')
+                        <div class="alert alert-danger" role="alert">
+                           {{$message}}     
+                        </div>
+                        @enderror
                            </div>
                           
                         </div>
 
                          <div class="row">
-                           <div class="col-md-3">
+                           {{-- <div class="col-md-3">
                               <label for="model" class="control-label mb-1"> IS Promo  </label>
                               <select id="is_promo" name="is_promo" class="form-control" required>
                               @if($is_promo=='1')
@@ -215,8 +266,8 @@ Back
                               @endif
                     
                               </select>
-                           </div>
-                           <div class="col-md-3">
+                           </div> --}}
+                           <div class="col-md-4">
                               <label for="model" class="control-label mb-1"> IS Featured  </label>
                               <select id="is_featured" name="is_featured" class="form-control" required>
                      
@@ -230,7 +281,7 @@ Back
                     
                               </select>
                            </div>
-                           <div class="col-md-3">
+                           <div class="col-md-4">
                               <label for="model" class="control-label mb-1"> IS Tranding  </label>
                               <select id="is_tranding" name="is_tranding" class="form-control" required>
                      
@@ -244,7 +295,7 @@ Back
                      
                               </select>
                            </div>
-                           <div class="col-md-3">
+                           <div class="col-md-4">
                               <label for="model" class="control-label mb-1"> IS Discounted   </label>
                               <select id="is_discounted" name="is_discounted" class="form-control" required>
                      
@@ -277,7 +328,7 @@ Back
                         $loop_count_prev=$loop_count_num;
                         $pIArr=(array)$val;
                         @endphp
-                        <input id="piid" type="hidden" name="piid[]" value="{{$pIArr['id']}}">
+                        <input id="piid" type="hidden" name="piid[]" value="{{ old('piid[]') }}">
                         <div class="col-md-4 product_images_{{$loop_count_num++}}"  >
                               <label for="images" class="control-label mb-1"> Image</label>
                               <input id="images" name="images[]" type="file" class="form-control" aria-required="true" aria-invalid="false" >
@@ -327,15 +378,30 @@ Back
                                     <div class="row">
                                        <div class="col-md-2">
                                           <label for="sku" class="control-label mb-1"> SKU</label>
-                                          <input id="sku" name="sku[]" value="{{$val->sku}}" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                          <input id="sku" name="sku[]" value="{{ old('sku[]',$val->sku) }}" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                           @error('sku[]')
+                                       <div class="alert alert-danger" role="alert">
+                                          {{$message}}     
+                                       </div>
+                                       @enderror
                                        </div>
                                        <div class="col-md-2">
                                           <label for="mrp" class="control-label mb-1"> MRP</label>
-                                          <input id="mrp" name="mrp[]" value="{{$val->mrp}}" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                          <input id="mrp" name="mrp[]" value="{{ old('mrp[]', $val->mrp) }}" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                          @error('mrp[]')
+                                    <div class="alert alert-danger" role="alert">
+                                       {{$message}}     
+                                    </div>
+                                    @enderror
                                        </div>
                                        <div class="col-md-2">
                                           <label for="price" class="control-label mb-1"> Price</label>
-                                          <input id="price" name="price[]" value="{{$val->price}}" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                          <input id="price" name="price[]" value="{{ old('price[]', $val->price) }}" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                          @error('price[]')
+                                    <div class="alert alert-danger" role="alert">
+                                       {{$message}}     
+                                    </div>
+                                    @enderror
                                        </div>
                                        <div class="col-md-3">
                                           <label for="size_id" class="control-label mb-1"> Size</label>
@@ -343,12 +409,17 @@ Back
                                              <option value="">Select</option>
                                              @foreach($sizes as $list)
                                              @if($val->size_id==$list->id)
-                                             <option value="{{$list->id}}" selected>{{$list->size}}</option>
+                                             <option value="{{ $list->id }}" selected>{{$list->size}}</option>
                                              @else
-                                             <option value="{{$list->id}}">{{$list->size}}</option>
+                                             <option value="{{ $list->id }}">{{$list->size}}</option>
                                              @endif
                                              @endforeach
                                           </select>
+                                           @error('size_id[]')
+                                    <div class="alert alert-danger" role="alert">
+                                       {{$message}}     
+                                    </div>
+                                    @enderror
                                        </div>
                                        <div class="col-md-3">
                                           <label for="color_id" class="control-label mb-1"> Color</label>
@@ -362,14 +433,24 @@ Back
                                              @endif
                                              @endforeach
                                           </select>
+                                           @error('color_id[]')
+                                    <div class="alert alert-danger" role="alert">
+                                       {{$message}}     
+                                    </div>
+                                    @enderror
                                        </div>
                                        <div class="col-md-2">
                                           <label for="qty" class="control-label mb-1"> Qty</label>
-                                          <input id="qty" name="qty[]" value="{{$val->qty}}" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                          <input id="qty" name="qty[]" value="{{ old('qty[]', $val->qty) }}" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                          @error('qty[]')
+                                    <div class="alert alert-danger" role="alert">
+                                       {{$message}}     
+                                    </div>
+                                    @enderror
                                        </div>
                                        <div class="col-md-4">
                                           <label for="attr_image" class="control-label mb-1"> Image</label>
-                                          <input id="attr_image" name="attr_image[]" value="{{$val->sku}}" type="file" class="form-control" aria-required="true" aria-invalid="false" >
+                                          <input id="attr_image" name="attr_image[]" type="file" class="form-control" aria-required="true" aria-invalid="false" >
                                           
                                           @if($val->attr_image!='')
                                              <img width="100px" src="{{asset('public/uploads/'.$val->attr_image)}}"/>
@@ -390,7 +471,8 @@ Back
                            @endforeach
                            @else
 
-                           <input id="paid" type="hidden" name="paid[]" value="">
+                           <input id="paid" type="hidden" name="paid[]">
+                     
                            <div class="card" id="product_attr_0">
                               <div class="card-body">
                                  <div class="form-group">
@@ -398,18 +480,22 @@ Back
                                        <div class="col-md-2">
                                           <label for="sku" class="control-label mb-1"> SKU</label>
                                           <input id="sku" name="sku[]" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                         
                                        </div>
                                        <div class="col-md-2">
                                           <label for="mrp" class="control-label mb-1"> MRP</label>
                                           <input id="mrp" name="mrp[]" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                          
                                        </div>
                                        <div class="col-md-2">
                                           <label for="price" class="control-label mb-1"> Price</label>
                                           <input id="price" name="price[]" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                          
                                        </div>
                                        <div class="col-md-3">
                                           <label for="size_id" class="control-label mb-1"> Size</label>
                                           <select id="size_id" name="size_id[]" class="form-control">
+                                              
                                              <option value="">Select</option>
                                              @foreach($sizes as $list)
                               
@@ -420,7 +506,8 @@ Back
                                        </div>
                                        <div class="col-md-3">
                                           <label for="color_id" class="control-label mb-1"> Color</label>
-                                          <select id="color_id" name="color_id[]" class="form-control">
+                                          <select id="color_id" name="color_id[]"  class="form-control">
+                                            
                                              <option value="">Select</option>
                                              @foreach($colors as $list)
                                              
@@ -431,12 +518,12 @@ Back
                                        </div>
                                        <div class="col-md-2">
                                           <label for="qty" class="control-label mb-1"> Qty</label>
-                                          <input id="qty" name="qty[]" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                                          <input id="qty" name="qty[]" type="text" value="{{ old('qty[]') }}" class="form-control" aria-required="true" aria-invalid="false" required>
+                                          
                                        </div>
                                        <div class="col-md-4">
                                           <label for="attr_image" class="control-label mb-1"> Image</label>
                                           <input id="attr_image" name="attr_image[]" type="file" class="form-control" aria-required="true" aria-invalid="false" >
-                                          
                                          
 
                                        </div>

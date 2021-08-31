@@ -20,17 +20,25 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="title" class="control-label mb-1">Title</label>
-                    <input id="title" name="title" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                    <input id="title" name="title" type="text" value="{{ old('title') }}" class="form-control" aria-required="true" aria-invalid="false" required>
+                    @error('title')
+                <div class="alert alert-danger">
+                    {{$message}}
                 </div>
+                @enderror
+                </div>
+
+                
+
                 <div class="col-md-6">
                     <label for="code" class="control-label mb-1">Code</label>
-                    <input id="code" name="code" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
-                    @error('code')
+                    <input id="code" name="code" type="text" value="{{ old('code') }}" class="form-control" aria-required="true" aria-invalid="false" required>
+                </div>
+                @error('code')
                     <div class="alert alert-danger" role="alert">
                         {{$message}}    
                     </div>
                     @enderror
-                </div>
             </div>
         </div>
 
@@ -38,8 +46,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="value" class="control-label mb-1">Value</label>
-                        <input id="value" name="value" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        <input id="value" name="value" value="{{ old('value') }}" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
                     </div>
+                    @error('value')
+                    <div class="alert alert-danger" role="alert">
+                        {{$message}}    
+                    </div>
+                    @enderror
                     <div class="col-md-6">
                         <label for="value" class="control-label mb-1">Type</label>
                         <select id="type" name="type" class="form-control" required>
@@ -56,8 +69,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="title" class="control-label mb-1">Min Order Amt</label>
-                            <input id="min_order_amt" name="min_order_amt" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                            <input id="min_order_amt" name="min_order_amt" type="text"  class="form-control" aria-required="true" aria-invalid="false" required>
                         </div>
+                        @error('min_order_amt')
+                    <div class="alert alert-danger" role="alert">
+                        {{$message}}    
+                    </div>
+                    @enderror
                         <div class="col-md-6">
                             <label for="code" class="control-label mb-1">IS One Time</label>
                             <select id="is_one_time" name="is_one_time" class="form-control" required>

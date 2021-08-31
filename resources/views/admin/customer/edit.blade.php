@@ -13,6 +13,25 @@
 			<hr>
 			<form action="{{route('customer.update')}}" method="post" enctype="multipart/form-data">
 			@csrf
+			<div class="row">
+				<div class="col-lg-6">
+					@error('image')
+		<div class="alert alert-danger" role="alert">
+			{{$message}}
+		</div>
+		@enderror	
+			<div class="form-group">
+				
+				<label for="image" class="control-label mb-1">Select Image</label>
+				<input id="image" name="image" type="file" value="{{ old('image') }}" class="form-control">
+			</div>
+				</div>
+				<div class="col-lg-6">
+					@if($image!='')
+				 <img width="100px" src="{{asset('public/uploads/'.$image)}}"/>
+			  @endif
+				</div>
+			</div>
 				
 			 <div class="row">
 			<div class="col-lg-6">
@@ -23,7 +42,7 @@
 		@enderror	
 			<div class="form-group">
 				<label for="name" class="control-label mb-1">Name</label>
-				<input id="name" name="name" value="{{$name}}" type="text" class="form-control">
+				<input id="name" name="name" value="{{ old('name') }}" type="text" class="form-control">
 			</div>
 
 		</div>
@@ -36,7 +55,7 @@
 			@enderror
 				<div class="form-group">
 					<label for="father_name" class="control-label mb-1">Father Name</label>
-					<input id="father_name" name="father_name" value="{{$father_name}}" type="text" class="form-control">
+					<input id="father_name" name="father_name" value="{{ old('father_name') }}" type="text" class="form-control">
 			   </div>
 			</div>
 			</div>
@@ -51,7 +70,7 @@
 				      
 					<div class="form-group">
 					   <label for="cnic" class="control-label mb-1">CNIC</label>
-					   <input id="cnic" name="cnic" value="{{$cnic}}" type="text" class="form-control">
+					   <input id="cnic" name="cnic" value="{{ old('cnic') }}" type="text" class="form-control">
 					</div>
 
 			</div>
@@ -65,7 +84,7 @@
 				      
 					<div class="form-group">
 					   <label for="email" class="control-label mb-1">Email</label>
-					   <input id="email" name="email" value="{{$email}}" type="text" class="form-control">
+					   <input id="email" name="email" value="{{ old('email') }}" type="text" class="form-control">
 					</div>
 			  
 			  </div>
@@ -80,7 +99,7 @@
 						@enderror
 						<div class="form-group">
 						   <label for="address" class="control-label mb-1">Address</label>
-						   <input id="address" name="address" value="{{$address}}" type="text" class="form-control">
+						   <input id="address" name="address" value="{{ old('address') }}" type="text" class="form-control">
 						</div>
 			</div>
 			<div class="col-lg-6"> 
@@ -91,7 +110,7 @@
 					   @enderror
 							<div class="form-group">
 							   <label for="mobile" class="control-label mb-1">Mobile</label>
-							   <input id="mobile" name="mobile" value="{{$mobile}}" type="text" class="form-control">
+							   <input id="mobile" name="mobile" value="{{ old('mobile') }}" type="text" class="form-control">
 							</div>
 				</div>
 				</div>
@@ -105,7 +124,7 @@
 						 @enderror
 							<div class="form-group">
 							   <label for="city" class="control-label mb-1">City</label>
-							   <input id="city" name="city" value="{{$city}}" type="text" class="form-control">
+							   <input id="city" name="city" value="{{ old('city') }}" type="text" class="form-control">
 						   </div>
 
 			</div>
@@ -118,30 +137,11 @@
 						 @enderror
 							<div class="form-group">
 							   <label for="state" class="control-label mb-1">State</label>
-							   <input id="state" name="state" value="{{$state}}" type="text" class="form-control">
+							   <input id="state" name="state" value="{{ old('state') }}" type="text" class="form-control">
 						   </div>
 			</div>
 			</div>
 			
-			<div class="row">
-				<div class="col-lg-6">
-					@error('image')
-		<div class="alert alert-danger" role="alert">
-			{{$message}}
-		</div>
-		@enderror	
-			<div class="form-group">
-				
-				<label for="image" class="control-label mb-1">Select Image</label>
-				<input id="image" name="image" type="file" class="form-control">
-			</div>
-				</div>
-				<div class="col-lg-6">
-					@if($image!='')
-				 <img width="100px" src="{{asset('public/uploads/'.$image)}}"/>
-			  @endif
-				</div>
-			</div>
 				<div>
 					<input type="hidden" name="customer_id" value="{{$customer_id}}">
 					<button type="submit" class="btn btn-info">Save Record</button>

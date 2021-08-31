@@ -18,7 +18,7 @@
         @csrf
         <div class="form-group">
             <label for="name" class="control-label mb-1">Brand Name</label>
-            <input id="name" name="name" type="text" class="form-control">
+            <input id="name" name="name" type="text" value="{{ old('name') }}" class="form-control">
         </div>
         @error('name')
         <div class="alert alert-danger">
@@ -33,7 +33,7 @@
 		@enderror	
 			<div class="form-group">
 				<label for="image" class="control-label mb-1">Select Image</label>
-				<input id="image" name="image" type="file" class="form-control">
+				<input id="image" name="image" type="file" value="{{ old('image') }}" class="form-control">
 			</div>
 
         <div>
